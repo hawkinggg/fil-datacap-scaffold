@@ -1,0 +1,43 @@
+[profile.default]
+src = 'contracts'
+out = 'out'
+libs = ['lib']
+fs_permissions = [{ access = "read-write", path = "./"}]
+
+[rpc_endpoints]
+default_network = "http://127.0.0.1:8545"
+localhost = "http://127.0.0.1:8545"
+
+mainnet = "https://cloudflare-eth.com"
+sepolia = "https://rpc2.sepolia.org"
+arbitrum = "https://arb1.arbitrum.io/rpc"
+arbitrumSepolia = "https://sepolia-rollup.arbitrum.io/rpc"
+optimism = "https://mainnet.optimism.io"
+optimismSepolia = "https://sepolia.optimism.io"
+polygon = "https://polygon-rpc.com"
+polygonMumbai = "https://rpc.ankr.com/polygon_mumbai"
+polygonZkEvm = "https://zkevm-rpc.com"
+polygonZkEvmTestnet = "https://rpc.public.zkevm-test.net"
+gnosis = "https://rpc.gnosischain.com"
+chiado = "https://rpc.chiadochain.net"
+base = "https://mainnet.base.org"
+baseSepolia = "https://sepolia.base.org"
+scrollSepolia = "https://sepolia-rpc.scroll.io"
+scroll = "https://rpc.scroll.io"
+pgn = "https://rpc.publicgoods.network"
+pgnTestnet = "https://sepolia.publicgoods.network"
+
+[etherscan]
+polygonMumbai = { key = "${ETHERSCAN_API_KEY}" }
+sepolia = { key = "${ETHERSCAN_API_KEY}" }
+
+
+[fmt]
+multiline_func_header = "params_first"
+line_length = 80
+tab_width = 2
+quote_style = "double"
+bracket_spacing = true
+int_types = "long"
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
