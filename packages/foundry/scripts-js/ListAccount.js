@@ -1,11 +1,11 @@
 import { config } from "dotenv";
 config();
-import { join, dirname } from "path";
+import { join, dirname } from "node:path";
 import { ethers, Wallet } from "ethers";
 import { toString } from "qrcode";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { parse } from "toml";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

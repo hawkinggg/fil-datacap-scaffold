@@ -47,15 +47,26 @@ export const Footer = () => {
         <ul className="menu menu-horizontal w-full">
           <div className="flex justify-center items-center gap-2 text-sm w-full">
             <div className="text-center">
-              <a href="https://github.com/scaffold-eth/se-2" target="_blank" rel="noreferrer" className="link">
-                Fork me
+              <a
+                href="https://github.com/hawkinggg/fil-datacap-scaffold"
+                target="_blank"
+                rel="noreferrer"
+                className="link"
+              >
+                <HeartIcon className="inline-block h-4 w-4" />
+                Star me
               </a>
             </div>
             <span>·</span>
             <div className="flex justify-center items-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block h-4 w-4" /> at
-              </p>
+              <p className="m-0 text-center">Dev by</p>
+              <a href="https://twitter.com/hawkinggggg" target="_blank" rel="noreferrer" className="link">
+                hawkinggg
+              </a>
+            </div>
+            <span>·</span>
+            <div className="flex justify-center items-center gap-2">
+              <p className="m-0 text-center">Thanks to</p>
               <a
                 className="flex justify-center items-center gap-1"
                 href="https://buidlguidl.com/"
@@ -64,12 +75,6 @@ export const Footer = () => {
               >
                 <BuidlGuidlLogo className="w-3 h-5 pb-1" />
                 <span className="link">BuidlGuidl</span>
-              </a>
-            </div>
-            <span>·</span>
-            <div className="text-center">
-              <a href="https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA" target="_blank" rel="noreferrer" className="link">
-                Support
               </a>
             </div>
           </div>

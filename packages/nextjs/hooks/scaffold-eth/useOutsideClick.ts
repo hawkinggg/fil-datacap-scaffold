@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import type React from "react";
+import { useEffect } from "react";
 
 /**
  * Handles clicks outside of passed ref element
  * @param ref - react ref of the element
  * @param callback - callback function to call when clicked outside
  */
-export const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: { (): void }) => {
+export const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
       if (!(event.target instanceof Element)) {
