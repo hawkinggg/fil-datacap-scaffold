@@ -1,1 +1,2 @@
 @openzeppelin/contracts/=lib/openzeppelin-contracts/contracts
+@chainlink/contracts@1.2.0=lib/chainlink-brownie-contracts/contracts
