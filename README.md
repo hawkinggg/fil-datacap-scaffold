@@ -78,3 +78,4 @@ allocator的签单主要分为两类，它们有不同的审核标准：
 - [contract-metaallocator](https://github.com/fidlabs/contract-metaallocator) - fidlabs维护的一个根据datacap分配合约库，可做参考
 - foundry -- 合约开发首选
 - [scaffold-eth-2](https://github.com/scaffold-eth/scaffold-eth-2) -- 集成了react前端和合约开发工具hardhat/foundry的开发脚手架
+- [gitcoin passport](https://app.passport.xyz/#/) -- 去中心化的一个kyc项目，fidlabs 使用了
