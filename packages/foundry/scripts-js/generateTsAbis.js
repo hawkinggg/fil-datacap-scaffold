@@ -87,7 +87,7 @@ function main() {
   // biome-ignore lint/complexity/noForEach: <explanation>
   Deploymentchains.forEach((chain) => {
     if (!chain.endsWith(".json")) return;
-    chainId = chain.slice(0, -5);
+    const chainId = chain.slice(0, -5);
     const deploymentObject = JSON.parse(
       readFileSync(`${current_path_to_deployments}/${chainId}.json`)
     );

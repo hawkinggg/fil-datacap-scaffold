@@ -10,7 +10,7 @@ import {FunctionsRequest} from "@chainlink/contracts@1.2.0/src/v0.8/functions/v1
  * THIS IS AN EXAMPLE CONTRACT THAT USES UN-AUDITED CODE.
  * DO NOT USE THIS CODE IN PRODUCTION.
  */
-contract FunctionsConsumerExample is FunctionsClient, ConfirmedOwner {
+contract Functions is FunctionsClient, ConfirmedOwner {
     using FunctionsRequest for FunctionsRequest.Request;
 
     bytes32 public s_lastRequestId;

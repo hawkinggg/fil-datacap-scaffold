@@ -7,10 +7,10 @@ import "./DeployHelpers.s.sol";
 contract DeployFunctionsContract is ScaffoldETHDeploy {
   // use `deployer` from `ScaffoldETHDeploy`
   function run() external ScaffoldEthDeployerRunner {
-    FunctionsConsumerExample yourContract = new FunctionsConsumerExample(deployer);
+    Functions yourContract = new Functions(deployer);
     console.logString(
       string.concat(
-        "FunctionsConsumerExample deployed at: ", vm.toString(address(yourContract))
+        "Functions deployed at: ", vm.toString(address(yourContract))
       )
     );
   }
