@@ -10,3 +10,6 @@
 [submodule "packages/foundry/lib/chainlink-brownie-contracts"]
 	path = packages/foundry/lib/chainlink-brownie-contracts
 	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "packages/foundry/lib/axelar-gmp-sdk-solidity"]
+	path = packages/foundry/lib/axelar-gmp-sdk-solidity
+	url = https://github.com/axelarnetwork/axelar-gmp-sdk-solidity

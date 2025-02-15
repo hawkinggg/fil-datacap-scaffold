@@ -160,6 +160,16 @@ const deployedContracts = {
               type: "address",
               internalType: "address",
             },
+            {
+              name: "_gateway",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_gasReceiver",
+              type: "address",
+              internalType: "address",
+            },
           ],
           stateMutability: "nonpayable",
         },
@@ -169,6 +179,86 @@ const deployedContracts = {
           inputs: [],
           outputs: [],
           stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "destinationAddress",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "destinationChain",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "execute",
+          inputs: [
+            {
+              name: "commandId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "sourceChain",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "sourceAddress",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "payload",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "gasService",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IAxelarGasService",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "gateway",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IAxelarGateway",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -314,6 +404,39 @@ const deployedContracts = {
         },
         {
           type: "function",
+          name: "setDestinationAddress",
+          inputs: [
+            {
+              name: "destination",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setDestinationChain",
+          inputs: [
+            {
+              name: "destination",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setRemoteValue",
+          inputs: [],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
           name: "setSource",
           inputs: [
             {
@@ -444,7 +567,17 @@ const deployedContracts = {
         },
         {
           type: "error",
+          name: "InvalidAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
           name: "NoInlineSecrets",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotApprovedByGateway",
           inputs: [],
         },
         {
@@ -470,18 +603,20 @@ const deployedContracts = {
         acceptOwnership: "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol",
         owner: "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol",
         transferOwnership: "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol",
+        execute: "lib/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
+        gateway: "lib/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
       },
     },
   },
-  11155111: {
-    Functions: {
-      address: "0xeCAfa8290eD51315929F7132F1caC118952B8d56",
+  314159: {
+    AllocatorFEVM: {
+      address: "0x7711479471DeF59f32Ebf9b5AC168a02A6ea3FFc",
       abi: [
         {
           type: "constructor",
           inputs: [
             {
-              name: "router",
+              name: "_gateway",
               type: "address",
               internalType: "address",
             },
@@ -494,6 +629,380 @@ const deployedContracts = {
           inputs: [],
           outputs: [],
           stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "execute",
+          inputs: [
+            {
+              name: "commandId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "sourceChain",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "sourceAddress",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "payload",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "gateway",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IAxelarGateway",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "message",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "setSourceAddress",
+          inputs: [
+            {
+              name: "_sourceAddress",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setSourceChain",
+          inputs: [
+            {
+              name: "_sourceChain",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "sourceAddress",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sourceChain",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "Executed",
+          inputs: [
+            {
+              name: "commandId",
+              type: "bytes32",
+              indexed: false,
+              internalType: "bytes32",
+            },
+            {
+              name: "_from",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+            {
+              name: "_message",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Executing",
+          inputs: [
+            {
+              name: "commandId",
+              type: "bytes32",
+              indexed: false,
+              internalType: "bytes32",
+            },
+            {
+              name: "_chain",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+            {
+              name: "_addr",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+            {
+              name: "_payload",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferRequested",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "InvalidAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidSourceAddress",
+          inputs: [
+            {
+              name: "addr",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "InvalidSourceChain",
+          inputs: [
+            {
+              name: "chain",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "NotApprovedByGateway",
+          inputs: [],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  11155111: {
+    AllocatorEVM: {
+      address: "0xE28FBe0e9a29ef88Ee7A8011Fe279690996F3400",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "router",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_gateway",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_gasReceiver",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "acceptOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "destinationAddress",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "destinationChain",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "execute",
+          inputs: [
+            {
+              name: "commandId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "sourceChain",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "sourceAddress",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "payload",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "gasService",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IAxelarGasService",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "gateway",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IAxelarGateway",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -572,13 +1081,21 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "sendRequest",
-          inputs: [
+          name: "s_source",
+          inputs: [],
+          outputs: [
             {
-              name: "source",
+              name: "",
               type: "string",
               internalType: "string",
             },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sendRequest",
+          inputs: [
             {
               name: "encryptedSecretsUrls",
               type: "bytes",
@@ -631,36 +1148,48 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "sendRequestCBOR",
+          name: "setDestinationAddress",
           inputs: [
             {
-              name: "request",
-              type: "bytes",
-              internalType: "bytes",
-            },
-            {
-              name: "subscriptionId",
-              type: "uint64",
-              internalType: "uint64",
-            },
-            {
-              name: "gasLimit",
-              type: "uint32",
-              internalType: "uint32",
-            },
-            {
-              name: "donID",
-              type: "bytes32",
-              internalType: "bytes32",
+              name: "destination",
+              type: "string",
+              internalType: "string",
             },
           ],
-          outputs: [
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setDestinationChain",
+          inputs: [
             {
-              name: "requestId",
-              type: "bytes32",
-              internalType: "bytes32",
+              name: "destination",
+              type: "string",
+              internalType: "string",
             },
           ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setRemoteValue",
+          inputs: [],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "setSource",
+          inputs: [
+            {
+              name: "source",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
           stateMutability: "nonpayable",
         },
         {
@@ -782,7 +1311,17 @@ const deployedContracts = {
         },
         {
           type: "error",
+          name: "InvalidAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
           name: "NoInlineSecrets",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotApprovedByGateway",
           inputs: [],
         },
         {
@@ -808,6 +1347,8 @@ const deployedContracts = {
         acceptOwnership: "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol",
         owner: "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol",
         transferOwnership: "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol",
+        execute: "lib/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
+        gateway: "lib/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
       },
     },
   },

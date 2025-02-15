@@ -1,4 +1,3 @@
-
 const pathway = args[0];
 const issueNum = args[1];
 
@@ -25,7 +24,6 @@ if (githubIssueResponse.error) {
     console.error("err: %s" , githubIssueResponse.data);
     throw Error("Request failed");
 }
-
 // console.log(githubIssueResponse.data);
 
 // get the number of ⚠️ in the body of the last comment which name is "Datacap Bot"
@@ -39,9 +37,17 @@ if (githubIssueResponse.data && githubIssueResponse.data.length > 0) {
     }
   }
 
-  if (lastDatacapBotComment) {
-    warningCount = (lastDatacapBotComment.body.match(/⚠️/g) || []).length;
+  if (lastDatacapBotComment && lastDatacapBotComment.body) {
+    // warningCount = (lastDatacapBotComment.body.match(/⚠️/g) || []).length;
+    const emoji = String.fromCodePoint(9888);
+    const regex = new RegExp(emoji, "g");
+    warningCount = (lastDatacapBotComment.body.match(regex) || []).length;
   }
 }
 
 return Functions.encodeUint256(warningCount);
+// const result = {
+//     warning: warningCount,
+// };
+
+// return Functions.encodeString(JSON.stringify(result));

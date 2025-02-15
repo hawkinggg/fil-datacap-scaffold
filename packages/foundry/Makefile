@@ -19,8 +19,11 @@ build:
 
 # Deploy the project
 deploy:
+	@echo "deploy to $(RPC_URL)"
 	@if [ "$(RPC_URL)" = "localhost" ]; then \
 		forge script script/Deploy.s.sol --rpc-url localhost --password localhost --broadcast --legacy --ffi; \
+	elif [ "$(RPC_URL)" = "filecoincalibration" ]; then \
+		forge script script/Deploy.s.sol --rpc-url $(RPC_URL) --broadcast --skip-simulation --ffi; \
 	else \
 		forge script script/Deploy.s.sol --rpc-url $(RPC_URL) --broadcast --legacy --ffi; \
 	fi

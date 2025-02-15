@@ -1,2 +1,3 @@
 @openzeppelin/contracts/=lib/openzeppelin-contracts/contracts
 @chainlink/contracts@1.2.0=lib/chainlink-brownie-contracts/contracts
+@axelar-network/axelar-gmp-sdk-solidity/contracts/=lib/axelar-gmp-sdk-solidity/contracts

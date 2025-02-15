@@ -5,25 +5,49 @@ import {FunctionsClient} from "@chainlink/contracts@1.2.0/src/v0.8/functions/v1_
 import {ConfirmedOwner} from "@chainlink/contracts@1.2.0/src/v0.8/shared/access/ConfirmedOwner.sol";
 import {FunctionsRequest} from "@chainlink/contracts@1.2.0/src/v0.8/functions/v1_0_0/libraries/FunctionsRequest.sol";
 
-contract AllocatorEVM is FunctionsClient, ConfirmedOwner {
+import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
+import { IAxelarGasService } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol';
+import { IERC20 } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol';
+
+contract AllocatorEVM is FunctionsClient, ConfirmedOwner, AxelarExecutable {
     using FunctionsRequest for FunctionsRequest.Request;
 
     bytes32 public s_lastRequestId;
     bytes public s_lastResponse;
     bytes public s_lastError;
-
     string public s_source;
+
+    string public destinationChain;
+    string public destinationAddress;
+    IAxelarGasService public immutable gasService;
+    // string public message;
+    // string public sourceChain;
+    // string public sourceAddress;
+    // event Executed(bytes32 commandId, string _from, string _message);
 
     error UnexpectedRequestID(bytes32 requestId);
 
     event Response(bytes32 indexed requestId, bytes response, bytes err);
 
+    // axelar sepolia gatawat 0xe432150cce91c13a887f7D836923d5597adD8E31
+    // axelar sepolia gas receiver 0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6   
     constructor(
-        address router
-    ) FunctionsClient(router) ConfirmedOwner(msg.sender) {}
+        address router,
+        address _gateway, address _gasReceiver
+    ) FunctionsClient(router) ConfirmedOwner(msg.sender) AxelarExecutable(_gateway) {
+        gasService = IAxelarGasService(_gasReceiver);
+    }
 
     function setSource(string memory source) external onlyOwner {
         s_source = source;
+    }
+
+    function setDestinationChain(string memory destination) external onlyOwner {
+        destinationChain = destination;
+    }
+
+    function setDestinationAddress(string memory destination) external onlyOwner {
+        destinationAddress = destination;
     }
 
     /**
@@ -84,5 +108,34 @@ contract AllocatorEVM is FunctionsClient, ConfirmedOwner {
         s_lastResponse = response;
         s_lastError = err;
         emit Response(requestId, s_lastResponse, s_lastError);
+    }
+
+    function setRemoteValue() external payable {
+        require(msg.value > 0, 'Gas payment is required');
+
+        // bytes memory payload = abi.encode(_message);
+        gasService.payNativeGasForContractCall{ value: msg.value }(
+            address(this),
+            destinationChain,
+            destinationAddress,
+            s_lastResponse,
+            msg.sender
+        );
+        gateway().callContract(destinationChain, destinationAddress, s_lastResponse);
+    }
+
+        /**
+     * @notice logic to be executed on dest chain
+     * @dev this is triggered automatically by relayer
+     * @param _sourceChain blockchain where tx is originating from
+     * @param _sourceAddress address on src chain where tx is originating from
+     * @param _payload encoded gmp message sent from src chain
+     */
+    function _execute(
+        bytes32 commandId,
+        string calldata _sourceChain,
+        string calldata _sourceAddress,
+        bytes calldata _payload
+    ) internal override {
     }
 }
